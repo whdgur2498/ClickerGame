@@ -30,13 +30,5 @@ namespace Common.Scene
 
             return name;
         }
-
-        /// <summary>
-        /// 씬 로드됐을 때 호출할 action 붙이는 함수
-        /// </summary>
-        public static void OnLoadCompleted(UnityAction<UnityEngine.SceneManagement.Scene, LoadSceneMode> callback)
-        {
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += callback;
-        }
     }
 }
