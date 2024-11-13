@@ -27,11 +27,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (transform.position != targetPosition) 
         { 
-            animator.SetBool("isWalking", true); 
+            animator.SetBool("isWalk", true); 
         } 
         else 
         { 
-            animator.SetBool("isWalking", false); 
+            animator.SetBool("isWalk", false); 
         }
     }
 
