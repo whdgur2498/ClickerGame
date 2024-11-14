@@ -11,11 +11,13 @@ public class GameManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindAnyObjectByType<GameManager>();
+                instance = FindObjectOfType<GameManager>();
 
                 if (instance == null)
                 {
-                    throw new System.Exception("Not GameObject GameManager");
+                    GameObject gameObject = new GameObject("GameManager");
+                    instance = gameObject.AddComponent<GameManager>();
+                    DontDestroyOnLoad(gameObject);
                 }
             }
             return instance;
@@ -23,4 +25,24 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] private GameObject playerPrefab;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    /// 플레이어 생성해주는 함수
+    private GameObject CreatePlayer()
+    {
+        GameObject go = Instantiate(playerPrefab);
+        return go;
+    }
 }

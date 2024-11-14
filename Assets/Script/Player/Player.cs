@@ -4,12 +4,13 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     private Animator animator;
-    public Text gelatinText; // 재화량을 표시할 텍스트
+    private Text gelatinText; // 재화량을 표시할 텍스트
     private int gelatinAmount = 0; // 재화량
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        gelatinText = GameObject.Find("JellyCount").GetComponent<Text>(); // JellyCount 텍스트 컴포넌트를 찾아 할당
         UpdateGelatinText(); // 초기 재화량 표시
     }
 
@@ -22,10 +23,15 @@ public class Player : MonoBehaviour
 
             if (collider.OverlapPoint(mousePosition))
             {
-                animator.SetTrigger("doTouch");
-                IncreaseGelatin();
+                SimulateClick();
             }
         }
+    }
+
+    public void SimulateClick() 
+    {
+        animator.SetTrigger("doTouch");
+        IncreaseGelatin();
     }
 
     void IncreaseGelatin()
@@ -36,6 +42,6 @@ public class Player : MonoBehaviour
 
     void UpdateGelatinText()
     {
-        gelatinText.text = gelatinAmount.ToString(); // 텍스트 업데이트
+        gelatinText.text = gelatinAmount.ToString(); // 숫자만 표시
     }
 }
