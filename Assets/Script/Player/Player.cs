@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Touch 애니메이션 트리거시 재화량 증가
     public void SimulateClick() 
     {
         animator.SetTrigger("doTouch");
